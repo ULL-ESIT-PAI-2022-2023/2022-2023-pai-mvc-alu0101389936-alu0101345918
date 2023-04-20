@@ -5,9 +5,9 @@ export class ChatController {
   model: ChatModel;
   view: ChatView;
 
-  constructor(model: ChatModel, view: ChatView) {
-    this.model = model;
-    this.view = view;
+  constructor() {
+    this.model = new ChatModel();
+    this.view = new ChatView();
 
     this.view.addSendButtonHandler(() => {
       const message = this.view.getMessageInput();

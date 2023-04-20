@@ -5,9 +5,9 @@ export class MusicPlayerController {
   model: PlaylistModel;
   view: MusicPlayerView;
 
-  constructor(model: PlaylistModel, view: MusicPlayerView) {
-    this.model = model;
-    this.view = view;
+  constructor(songs: string[]) {
+    this.model = new PlaylistModel(songs);
+    this.view = new MusicPlayerView();
     this.view.displaySong(this.model.getCurrentSong());
   }
 

@@ -5,9 +5,9 @@ export class WelcomeController {
   model: WelcomeModel;
   view: WelcomeView;
 
-  constructor(model: WelcomeModel, view: WelcomeView) {
-    this.model = model;
-    this.view = view;
+  constructor() {
+    this.model = new WelcomeModel();
+    this.view = new WelcomeView();
   }
 
   showWelcomeMessage() {
