@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Poker Game</title>
+  <script defer async type="module" src="/dist/poker/main-poker.js"></script>
+  <link rel="stylesheet" href="/css/poker.css">
+</head>
+
+<body>
+  <div class="home-container">
+    <li><a href="/index.html">HOME</a></li>
+  </div>
+  <h1>The Poker Game</h1>
+  <div class="container">
+
+    <div class="content-wrapper">
+      <div class="content">
+        <canvas id="board-canvas"></canvas>
+      </div>
+    </div>
+
+    <div class="controls-wrapper">
+      <div class="controls">
+        <button type="button" id="draw-Player1-button">Draw Player 1</button>
+        <button type="button" id="draw-Player2-button">Draw Player 2</button>
+        <button type="button" id="show-winner-button">Show Winner</button>
+        <button type="button" id="poker-hand">Poker Hand</button>
+        <button type="button" id="trips">Trips</button>
+        <div class="winner-message" id="winner-message-div"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

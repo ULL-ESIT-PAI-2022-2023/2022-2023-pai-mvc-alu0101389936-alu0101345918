@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center; /* Agregado para centrar los enlaces */
+}
+
+li {
+  margin: 10px 0;
+  display: inline-block; /* Agregado para que los elementos se muestren en línea */
+}
+
+a {
+  display: block;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #333; /* Agregado un borde alrededor del enlace */
+  border-radius: 5px; /* Agregado un radio para redondear las esquinas */
+}
+
+a:hover {
+  background-color: #666;
+}
