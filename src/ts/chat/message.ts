@@ -6,13 +6,15 @@
   *
   * @author Diego Pérez García - Sergio Nicolás Seguí
   * @since 22 Apr. 2023
-  * @desc Main file
+  * @desc Interface Message
   */
 
-import { ChatController } from './chat-controller.js';
-
-function main() {
-  const chatController = new ChatController();
+/**
+ * @desc Interface Message
+ * @classdesc The Message interface is the interface that defines the message object
+ */
+export interface Message {
+  author: string;
+  message: string;
+  timestamp: Date;
 }
-
-main();

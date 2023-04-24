@@ -30,10 +30,10 @@ export interface HANDSAREAS {
 export class Board {
   private cardsPadding = 0.02;
   private ctx: CanvasRenderingContext2D;
-  private handsAreas: { [key: string]: HANDSAREAS} = {};
+  private handsAreas: { [key: string]: HANDSAREAS } = {};
   private handsImages: { [key: string]: Array<string> } = {};
   public readonly drawHandEvents: { [key: string]: Event } = {};
-  private drawButtons: { [key: string]: HTMLElement} = {};
+  private drawButtons: { [key: string]: HTMLElement } = {};
   public readonly viewChangeEvent: Event = new Event();
   private showWinnerButton: HTMLElement;
   public readonly showWinnerEvent: Event = new Event();
@@ -53,6 +53,7 @@ export class Board {
     this.canvas.width = this.canvas.clientWidth;
     this.canvas.height = this.canvas.clientHeight;
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
+
     this.players.forEach((player, index) => {
       this.drawHandEvents[player] = new Event();
       this.handsImages[player] = [];
@@ -68,9 +69,11 @@ export class Board {
       if (!this.drawButtons[player]) throw new Error(`Button for ${player} does not exist`);
       this.drawButtons[player].addEventListener('click', () => {
         this.drawHandEvents[player].emit(player);
-        //this.drawButtons[player].style.display = 'none';
+        this.pokerHandDrawButton.style.display = 'none';
+        this.tripsDrawButton.style.display = 'none';
       });
     });
+
     this.showWinnerButton = document.getElementById('show-winner-button') as HTMLElement;
     if (!this.showWinnerButton) throw new Error('Show winner button does not exist');
     this.showWinnerButton.addEventListener('click', () => {
@@ -82,6 +85,7 @@ export class Board {
       this.pokerHandDrawButton.style.display = 'none';
       this.tripsDrawButton.style.display = 'none';
     });
+
     this.pokerHandDrawButton = document.getElementById('poker-hand') as HTMLElement;
     if (!this.pokerHandDrawButton) throw new Error('Show winner button does not exist');
     this.pokerHandDrawButton.addEventListener('click', () => {
@@ -93,6 +97,7 @@ export class Board {
       this.pokerHandDrawButton.style.display = 'none';
       this.tripsDrawButton.style.display = 'none';
     });
+
     this.tripsDrawButton = document.getElementById('trips') as HTMLElement;
     if (!this.tripsDrawButton) throw new Error('Show winner button does not exist');
     this.tripsDrawButton.addEventListener('click', () => {
@@ -111,7 +116,7 @@ export class Board {
    * @param {String} player - The player to assign the images to
    * @param {Array<String>} images - The images to assign
    */
-  public assignImages(player: string, images: Array<string>) {
+  public assignImages(player: string, images: Array<string>): void {
     if (this.handsImages[player] === undefined) throw new Error('Player does not exist');
     this.handsImages[player] = images;
     this.viewChangeEvent.emit();
@@ -121,8 +126,7 @@ export class Board {
    * @desc Shows the winner of the game
    * @param {String} player The winner of the game 
    */
-  public defineWinner(player: string) {
-    //if (this.handsImages[player] === undefined) throw new Error('Player does not exist');
+  public defineWinner(player: string): void {
     this.winner = player;
     const winnerMessage: HTMLElement = document.getElementById('winner-message-div') as HTMLElement;
     winnerMessage.innerHTML = '<h3>' + `The winner is ${this.winner}` + '</h3>';
@@ -133,7 +137,7 @@ export class Board {
    * @desc Shows the winner of the game
    * @param {String} iterations The winner of the game 
    */
-  public defineIterations(iterations: string) {
+  public defineIterations(iterations: string): void {
     const winnerMessage: HTMLElement = document.getElementById('winner-message-div') as HTMLElement;
     winnerMessage.innerHTML = '<h3>' + `Number of iterations: ${iterations}` + '</h3>';
     this.viewChangeEvent.emit();
@@ -142,11 +146,15 @@ export class Board {
   /**
    * @desc Clear the canvas
    */
-  public clear() {
+  public clear(): void {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  public renderBackCards(player: string) {
+  /**
+   * @desc Render the cards of the player
+   * @param {String} player - The player to render the cards
+   */
+  public renderBackCards(player: string): void {
     const availableArea = {
       width: (this.handsAreas[player].width / 5),
       height: this.handsAreas[player].height,
@@ -166,11 +174,11 @@ export class Board {
       };
     }
   }
-  
+
   /**
    * @desc Draw the board
    */
-  public render() {
+  public render(): void {
     for (const player in this.handsImages) {
       const availableArea = {
         width: (this.handsAreas[player].width / this.handsImages[player].length),

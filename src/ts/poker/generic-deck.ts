@@ -19,7 +19,7 @@ import { Card } from './card.js';
 export class GenericDeck {
   /**
    * @constructor
-   * @param cards The cards of the deck
+   * @param {Card[]} cards The cards of the deck
    */
   constructor(protected cards: Card[] = []) {
   }
@@ -36,7 +36,7 @@ export class GenericDeck {
 
   /**
    * @desc Pops a card from the deck
-   * @returns The number of cards in the deck
+   * @returns {Card | undefined} The card popped
    */
   public popCard(): Card | undefined {
     if (this.cards.length > 0) {
@@ -47,8 +47,7 @@ export class GenericDeck {
 
   /**
    * @desc Pushes a card to the deck
-   * @param card The card to push
-   * @returns The number of cards in the deck
+   * @param {Card} card The card to push
    */
   public pushCard(card: Card): void {
     this.cards.push(card);
@@ -63,7 +62,7 @@ export class GenericDeck {
 
   /**
    * @desc Returns the deck as a string
-   * @returns The deck as a string
+   * @returns {string} The deck as a string
    */
   public toString(): string {
     return this.cards.map(card => card.toString()).join('\n');
@@ -71,6 +70,8 @@ export class GenericDeck {
 
   /**
    * @desc Moves cards to another deck
+   * @param {GenericDeck} deck The deck to move the cards to
+   * @param {number} numberOfCards The number of cards to move
    */
   public moveCardsTo(deck: GenericDeck, numberOfCards: number): void {
     for (let i = 0; i < numberOfCards; i++) {
@@ -80,7 +81,7 @@ export class GenericDeck {
 
   /**
    * @desc Returns the images of the deck
-   * @returns The images of the deck
+   * @returns {string[]} The images of the deck
    */
   public getImages(): string[] {
     return this.cards.map((card) => card.imageUrl);

@@ -15,21 +15,21 @@
  * @classdesc The event is the class that contains the listeners
  */
 export class Event {
-  private readonly listeners: Function[] = [];
+  private readonly listeners: ((...args: any) => any)[] = [];
 
   /**
    * @desc Adds a listener to the event
-   * @param listener The listener to add
+   * @param {(...args: any) => any} listener The listener to add
    */
-  public addListener(listener: Function): void {
+  public addListener(listener: (...args: any) => any): void {
     this.listeners.push(listener);
   }
 
   /**
    * @desc Removes a listener from the event
-   * @param listener The listener to remove
+   * @param {(...args: any) => any} listener The listener to remove
    */
-  public removeListener(listener: Function): void {
+  public removeListener(listener: (...args: any) => any): void {
     const index = this.listeners.indexOf(listener);
     if (index > -1) {
       this.listeners.splice(index, 1);
@@ -38,8 +38,7 @@ export class Event {
 
   /**
    * @desc Emits the event
-   * @param args The arguments to emit
-   * @returns void
+   * @param {...any} args The arguments to pass to the listeners
    */
   public emit(...args: any[]): void {
     this.listeners.forEach((listener) => listener(...args));

@@ -72,7 +72,7 @@ export class Hand extends GenericDeck {
   }
 
   /**
-   * 
+   * @desc Gets the value of the hand
    * @returns The value of the hand
    */
   public valueOfHand(): number {
@@ -84,7 +84,7 @@ export class Hand extends GenericDeck {
   }
 
   /**
-   * 
+   * @desc Gets the value of the cards of the hand
    * @returns The value of the cards of the hand
    */
   public rawValueOfHand(): number {
@@ -134,6 +134,7 @@ export class Hand extends GenericDeck {
   }
 
   /**
+   * @desc Return all the three of a kind of the hand
    * @returns {Array<Card>} The cards which conform a three of a kind.
    */
   private numOfThreeOfAKind(): Card[] {
@@ -165,6 +166,7 @@ export class Hand extends GenericDeck {
   }
 
   /**
+   * @desc Return all the cards which conform a flush.
    * @returns {Array<Card>} The cards which conform a flush.
    */
   private numOfFlush(): Card[] {
@@ -190,6 +192,7 @@ export class Hand extends GenericDeck {
   }
 
   /**
+   * @desc Return all the cards which conform a four of a kind.
    * @returns {Array<Card>} The cards which conform a four of a kind.
    */
   private numOfFourOfAKind(): Card[] {

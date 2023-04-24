@@ -69,9 +69,9 @@ export class Deck extends GenericDeck {
 
   /**
    * @desc Deals a number of cards to a number of hands
-   * @param numberOfHands Number of hands to deal
-   * @param numberOfCards Number of cards to deal
-   * @returns Array of hands
+   * @param {number} numberOfHands The number of hands to deal
+   * @param {number} numberOfCards The number of cards to deal
+   * @returns {Array<Hand>} The hands with the cards
    */
   public dealHands(numberOfHands: number, numberOfCards: number): Array<Hand> {
     const hands: Array<Hand> = new Array<Hand>(numberOfHands);
