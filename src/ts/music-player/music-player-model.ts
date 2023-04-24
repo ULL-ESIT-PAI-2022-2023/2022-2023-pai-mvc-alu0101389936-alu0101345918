@@ -1,22 +1,45 @@
+import { Song } from './song.js';
+
 export class MusicPlayerModel {
-  songs: string[];
-  currentIndex: number;
 
-  constructor(songs: string[]) {
-    this.songs = songs;
-    this.currentIndex = 0;
+  constructor(public playlist: Song[] = [],
+    public currentSongIndex: number = -1,
+    public isPlaying: boolean = false) { }
+
+  // Selecciona la siguiente canción en la lista de reproducción
+  public playNextSong(): void {
+    this.currentSongIndex = (this.currentSongIndex + 1) % this.playlist.length;
   }
 
-  getCurrentSong() {
-    return this.songs[this.currentIndex];
+  // Selecciona la canción anterior en la lista de reproducción
+  public playPreviousSong(): void {
+    this.currentSongIndex =
+      (this.currentSongIndex - 1 + this.playlist.length) % this.playlist.length;
   }
 
-  nextSong() {
-    this.currentIndex = (this.currentIndex + 1) % this.songs.length;
+  // Devuelve la canción actualmente seleccionada
+  public getCurrentSong(): Song | undefined {
+    return this.playlist[this.currentSongIndex];
   }
 
-  previousSong() {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.songs.length) % this.songs.length;
+  // Play
+  public play(): void {
+    this.isPlaying = true;
   }
-};
+
+  // Pause
+  public pause(): void {
+    this.isPlaying = false;
+  }
+
+  // Stop
+  public stop(): void {
+    this.isPlaying = false;
+    this.currentSongIndex = -1;
+  }
+
+  // SetVolume
+  public setVolume(volume: number): void {
+    // Establece el volumen del reproductor
+  }
+}
